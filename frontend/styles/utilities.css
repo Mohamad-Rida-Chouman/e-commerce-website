@@ -10,12 +10,40 @@
 	flex-wrap: wrap;
 }
 
+.justify-between{
+    justify-content: space-between;
+}
+
+.justify-around{
+    justify-content: space-around;
+}
+
+.justify-center{
+    justify-content: center;
+}
+
+.justify-end{
+    justify-content: end;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.align-end{
+    align-items: end;
+}
+
 .full-width {
 	width: 100%;
 }
 
 .full-height {
 	height: 100%;
+}
+
+.padding-xs {
+    padding: 0.25rem 0.5rem;
 }
 
 .padding-s {
@@ -28,4 +56,28 @@
 
 .padding-l {
 	padding: 1.5rem 2rem;
+}
+
+.gap-xs {
+    gap: 5px;
+}
+
+.gap-s {
+    gap: 10px;
+}
+
+.black-bg{
+    background-color: black;
+}
+
+.gold-bg{
+    background-color: gold;
+}
+
+.orange-bg{
+    background-color: orange;
+}
+
+.orangered-bg{
+    background-color: orangered;
 }

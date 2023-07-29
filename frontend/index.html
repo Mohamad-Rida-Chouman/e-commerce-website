@@ -8,9 +8,23 @@
 		<link rel="stylesheet" href="./styles/utilities.css" />
 	</head>
 	<body>
-		<header class="navbar flex" id="navbar">
-
+        <header>
+            <nav class="navbar flex justify-between padding-xs gold-bg" id="navbar">
+                <img class="logo" id="logo" src="./assets/logo.svg" alt="logo">
+                <div class="cart-favorites-container flex justify-between gap-s">
+                    <div class="favorites-container flex" id="favorites-container">
+                        <img class="favorites" id="favorites" src="./assets/heart.svg" alt="favorites">
+                    </div>
+                    <div class="cart-container flex" id="cart-container">
+                        <img class="cart" id="cart" src="./assets/cart.svg" alt="shopping cart">
+                    </div>
+                </div>
+                <button class="login">login</button>
+            </nav>
         </header>
+		<main>
+            
+        </main>
 		<script src="./scripts/index.js"></script>
 	</body>
 </html>
