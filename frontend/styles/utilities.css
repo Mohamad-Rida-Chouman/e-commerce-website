@@ -66,6 +66,14 @@
     gap: 10px;
 }
 
+.gap-m {
+    gap: 20px;
+}
+
+.gap-l {
+    gap: 30px;
+}
+
 .black-bg{
     background-color: black;
 }
