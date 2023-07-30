@@ -1,0 +1,30 @@
+.category-list-item, .product{
+    flex: 1 1 0;
+    height: 5vh;
+    border: 1px solid black;
+}
+
+/* .available-categories{
+    width: 30%;
+} */
+
+.bin {
+    height: 3vh;
+    width: 3vw;
+}
+
+.main-container{
+    width: 30%;
+}
+
+.add-category-container, .delete-product-container, .add-product-container{
+    border: 1px solid black;
+}
+
+.new-category{
+    flex: 4 1 0;
+}
+
+.submit-category{
+    flex: 1 1 0;
+}
