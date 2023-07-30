@@ -11,7 +11,7 @@ window.addEventListener('load', async () => {
 		for (const index in products) {
 			const product = products[index];
 
-			productsLis += '<li><span>' + product.product + '</span> ----- <span><a href="javascript:;" class="edit-btn" data-id="' + product.id + '">Edit name</a></span> ----- <span> <a href="javascript:;" class="delete-btn" data-id="' + product.id + '">Delete</a></span></li>';
+			productsLis += '<li><span> Product name: ' + product.name + '</span> </span> ----- <span> <span> ID: ' + product.id + '</span> ----- <span><a href="javascript:;" class="edit-btn" data-id="' + product.id + '">Edit name</a></span> ----- <span> <a href="javascript:;" class="delete-btn" data-id="' + product.id + '">Delete</a></span></li>';
 		}
 
 		productsUl.innerHTML = productsLis;
@@ -34,6 +34,20 @@ window.addEventListener('load', async () => {
 				window.location.href = `index.html`;
 			}
 		});
+
+		const categories = await getCategories();
+
+		const categoriesUl = document.getElementById('categories-list');
+
+		let categoriesList = '';
+
+		for (const index in categories) {
+			const category = categories[index];
+
+			categoriesList += '<option value="' + category.id+'" label= "' + category.category+'">';
+		}
+
+		categoriesUl.innerHTML = categoriesList;
 	}
 
 	// updating an existing product form
@@ -111,15 +125,55 @@ const getProducts = async () => {
 	}
 };
 
+const BASE_URL_cat = 'http://127.0.0.1:8000/api/categories';
+
+const getCategories = async () => {
+	try {
+		const response = await axios.get(`${BASE_URL_cat}`);
+
+		const categories = response.data;
+
+		return categories;
+	} catch (errors) {
+		console.error(errors);
+	}
+};
+
+
+
 const storeProduct = async (createProductForm) => {
 	try {
-		const product = createProductForm.querySelector('#product').value;
+		const name = createProductForm.querySelector('#product-name').value;
+		const description = createProductForm.querySelector('#product-description').value;
+		const price = createProductForm.querySelector('#product-price').value;
+		const image = createProductForm.querySelector('#product-image').value;
+		const category = createProductForm.querySelector('#category').value;
 
-		const response = await axios.post(`${BASE_URL}`, { product: product });
-
-		const productResponse = response.data;
-
-		return productResponse;
+		if (category == ''){
+			const warning = document.getElementById('warning');
+			warning.innerHTML=`Please select a category`;
+			return
+		}
+		else{
+			const product =  {
+				name: name,
+				description: description,
+				price: price,
+				image: image,
+			};
+			const response = await axios.post(`${BASE_URL}`, product);
+			const productResponse = response.data;
+			
+			const relationURL = BASE_URL+'/'+productResponse.id+'/categories'
+		
+			const response2 = await axios.post(`${relationURL}`, {category_ids:category});
+			// const categoryResponse = response2.data;
+			
+			
+	
+			return productResponse;
+		}
+		
 	} catch (errors) {
 		console.error(errors);
 	}
@@ -139,7 +193,17 @@ const getProduct = async (productId) => {
 
 const editProduct = async (editProductForm, productId) => {
 	try {
-		const product = editProductForm.querySelector('#product').value;
+		const productName = editProductForm.querySelector('#product-name').value;
+		const productDescription = editProductForm.querySelector('#product-description').value;
+		const productPrice = editProductForm.querySelector('#product-price').value;
+		const productImage = editProductForm.querySelector('#product-image').value;
+
+		const product =  {
+			productName,
+			productDescription,
+			productPrice,
+			productImage,
+		}
 
 		const response = await axios.put(`${BASE_URL}/${productId}`, {
 			product: product,

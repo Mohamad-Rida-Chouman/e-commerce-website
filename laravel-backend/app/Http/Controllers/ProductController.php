@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\ProductController;
 
 class ProductController extends Controller
 {
@@ -26,7 +25,7 @@ class ProductController extends Controller
             'name' => 'required|unique:products,name',
             'description' => 'required|string',
             'price' => 'required|numeric',
-            'image' => 'required|string',
+            'image' => 'string',
         ]);
 
         if ( $validator->fails() ) {
@@ -66,7 +65,7 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        $category->delete();
+        $product->delete();
         return response()->json('',200);
     }
 

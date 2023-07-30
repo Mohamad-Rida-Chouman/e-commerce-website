@@ -6,12 +6,16 @@
     <title>Create Product</title>
 </head>
 <body>
+    <p id="warning"></p>
     <div id="create-product-wrapper">
         <form id="create-product-form">
             <input type="text" class="product-name" id="product-name" placeholder="Enter product name">
             <input type="text" class="product-description" id="product-description" placeholder="Enter product details">
             <input type="number" class="product-price" id="product-price" placeholder="Enter product price">
             <input type="file" class="product-image" id="product-image" placeholder="Upload product image">
+            <input list="categories-list" name="category" id="category">
+            <datalist id="categories-list">
+            </datalist>
             <button type="submit">Add product</button>
         </form>
     </div>
