@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\ProductController;
 
 class ProductController extends Controller
@@ -24,7 +25,6 @@ class ProductController extends Controller
         $validator = Validator::make( $request->all(), [
             'name' => 'required|unique:products,name',
             'description' => 'required|string',
-            'category' => 'required|string',
             'price' => 'required|numeric',
             'image' => 'required|string',
         ]);
@@ -52,7 +52,6 @@ class ProductController extends Controller
         $validator = Validator::make( $request->all(), [
             'name' => 'required|unique:products,name',
             'description' => 'required|string',
-            'category' => 'required|string',
             'price' => 'required|numeric',
             'image' => 'required|string',
         ]);
