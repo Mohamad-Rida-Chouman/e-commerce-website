@@ -61,7 +61,10 @@ window.addEventListener('load', async () => {
 
 		const product = await getProduct(productId);
 		console.log(product)
-		editProductForm.querySelector('#product').value = product.product;
+		editProductForm.querySelector('#product-name').value = product.name;
+		editProductForm.querySelector('#product-description').value = product.description;
+		editProductForm.querySelector('#product-price').value = product.price;
+		// editProductForm.querySelector('#product-image').value = product.image;
 
 		editProductForm.addEventListener('submit', async (event) => {
 			event.preventDefault();
@@ -146,7 +149,7 @@ const storeProduct = async (createProductForm) => {
 		const name = createProductForm.querySelector('#product-name').value;
 		const description = createProductForm.querySelector('#product-description').value;
 		const price = createProductForm.querySelector('#product-price').value;
-		const image = createProductForm.querySelector('#product-image').value;
+		// const image = createProductForm.querySelector('#product-image').value;
 		const category = createProductForm.querySelector('#category').value;
 
 		if (category == ''){
@@ -159,7 +162,7 @@ const storeProduct = async (createProductForm) => {
 				name: name,
 				description: description,
 				price: price,
-				image: image,
+				// image: image,
 			};
 			const response = await axios.post(`${BASE_URL}`, product);
 			const productResponse = response.data;
@@ -193,21 +196,20 @@ const getProduct = async (productId) => {
 
 const editProduct = async (editProductForm, productId) => {
 	try {
-		const productName = editProductForm.querySelector('#product-name').value;
-		const productDescription = editProductForm.querySelector('#product-description').value;
-		const productPrice = editProductForm.querySelector('#product-price').value;
-		const productImage = editProductForm.querySelector('#product-image').value;
+		const name = editProductForm.querySelector('#product-name').value;
+		const description = editProductForm.querySelector('#product-description').value;
+		const price = editProductForm.querySelector('#product-price').value;
+		// const productImage = editProductForm.querySelector('#product-image').value;
 
 		const product =  {
-			productName,
-			productDescription,
-			productPrice,
-			productImage,
+			name,
+			description,
+			price,
+			// productImage,
 		}
+		console.log(product)
 
-		const response = await axios.put(`${BASE_URL}/${productId}`, {
-			product: product,
-		});
+		const response = await axios.put(`${BASE_URL}/${productId}`,product);
 
 		const productResponse = response.data;
 

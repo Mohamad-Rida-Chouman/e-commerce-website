@@ -52,7 +52,7 @@ class ProductController extends Controller
             'name' => 'required|unique:products,name',
             'description' => 'required|string',
             'price' => 'required|numeric',
-            'image' => 'required|string',
+            // 'image' => 'string',
         ]);
 
         if ( $validator->fails() ) {
