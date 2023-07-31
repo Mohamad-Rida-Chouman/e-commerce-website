@@ -31,7 +31,8 @@ window.addEventListener('load', async () => {
 			const category = await storeCategory(createCategoryForm);
 
 			if (category) {
-				window.location.href = `index.html`;
+				window.location.href = 'dashboard.html';
+
 			}
 		});
 	}
@@ -55,7 +56,7 @@ window.addEventListener('load', async () => {
 			const category = await editCategory(editCategoryForm, categoryId);
 
 			if (category) {
-				window.location.href = `index.html`;
+				window.location.href = `dashboard.html`;
 			}
 		});
 	}
@@ -90,18 +91,18 @@ window.addEventListener('load', async () => {
                 const categoryId = target.getAttribute('data-id');
     
                 if (categoryId) {
-                    window.location.href = `edit.html?category_id=${categoryId}`;
+                    window.location.href = `editCategory.html?category_id=${categoryId}`;
                 }
             });
         })
     }
 });
 
-const BASE_URL = 'http://127.0.0.1:8000/api/categories';
+const CAT_BASE_URL = 'http://127.0.0.1:8000/api/categories';
 
 const getCategories = async () => {
 	try {
-		const response = await axios.get(`${BASE_URL}`);
+		const response = await axios.get(`${CAT_BASE_URL}`);
 
 		const categories = response.data;
 
@@ -115,7 +116,7 @@ const storeCategory = async (createCategoryForm) => {
 	try {
 		const category = createCategoryForm.querySelector('#category').value;
 
-		const response = await axios.post(`${BASE_URL}`, { category: category });
+		const response = await axios.post(`${CAT_BASE_URL}`, { category: category });
 
 		const categoryResponse = response.data;
 
@@ -127,7 +128,7 @@ const storeCategory = async (createCategoryForm) => {
 
 const getCategory = async (categoryId) => {
 	try {
-		const response = await axios.get(`${BASE_URL}/${categoryId}`);
+		const response = await axios.get(`${CAT_BASE_URL}/${categoryId}`);
 
 		const category = response.data;
 
@@ -141,7 +142,7 @@ const editCategory = async (editCategoryForm, categoryId) => {
 	try {
 		const category = editCategoryForm.querySelector('#category').value;
 
-		const response = await axios.put(`${BASE_URL}/${categoryId}`, {
+		const response = await axios.put(`${CAT_BASE_URL}/${categoryId}`, {
 			category: category,
 		});
 
@@ -155,7 +156,7 @@ const editCategory = async (editCategoryForm, categoryId) => {
 
 const deleteCategory = async (categoryId) => {
 	try {
-		const response = await axios.delete(`${BASE_URL}/${categoryId}`);
+		const response = await axios.delete(`${CAT_BASE_URL}/${categoryId}`);
 
 		const status = response.status;
 

@@ -11,7 +11,7 @@ window.addEventListener('load', async () => {
 		for (const index in products) {
 			const product = products[index];
 
-			productsLis += '<li><span> Product name: ' + product.name + '</span> </span> ----- <span> <span> ID: ' + product.id + '</span> ----- <span><a href="javascript:;" class="edit-btn" data-id="' + product.id + '">Edit name</a></span> ----- <span> <a href="javascript:;" class="delete-btn" data-id="' + product.id + '">Delete</a></span></li>';
+			productsLis += '<li><span> Product name: ' + product.name + '</span> </span> ----- <span> <span> ID: ' + product.id + '</span> ----- <span><a href="javascript:;" class="edit-btn" data-id="' + product.id + '">Edit product</a></span> ----- <span> <a href="javascript:;" class="delete-btn" data-id="' + product.id + '">Delete</a></span></li>';
 		}
 
 		productsUl.innerHTML = productsLis;
@@ -31,7 +31,7 @@ window.addEventListener('load', async () => {
 			const product = await storeProduct(createProductForm);
 
 			if (product) {
-				window.location.href = `index.html`;
+				window.location.href = `dashboard.html`;
 			}
 		});
 
@@ -50,7 +50,6 @@ window.addEventListener('load', async () => {
 		categoriesUl.innerHTML = categoriesList;
 	}
 
-	// updating an existing product form
 	const editProductWrapper = document.getElementById('edit-product-wrapper');
 
 	if (editProductWrapper) {
@@ -64,7 +63,7 @@ window.addEventListener('load', async () => {
 		editProductForm.querySelector('#product-name').value = product.name;
 		editProductForm.querySelector('#product-description').value = product.description;
 		editProductForm.querySelector('#product-price').value = product.price;
-		// editProductForm.querySelector('#product-image').value = product.image;
+		editProductForm.querySelector('#product-image').value = product.image;
 
 		editProductForm.addEventListener('submit', async (event) => {
 			event.preventDefault();
@@ -72,7 +71,7 @@ window.addEventListener('load', async () => {
 			const product = await editProduct(editProductForm, productId);
 
 			if (product) {
-				window.location.href = `index.html`;
+				window.location.href = `dashboard.html`;
 			}
 		});
 	}
@@ -107,18 +106,18 @@ window.addEventListener('load', async () => {
                 const productId = target.getAttribute('data-id');
     
                 if (productId) {
-                    window.location.href = `edit.html?product_id=${productId}`;
+                    window.location.href = `editProduct.html?product_id=${productId}`;
                 }
             });
         })
     }
 });
 
-const BASE_URL = 'http://127.0.0.1:8000/api/products';
+const PROD_BASE_URL = 'http://127.0.0.1:8000/api/products';
 
 const getProducts = async () => {
 	try {
-		const response = await axios.get(`${BASE_URL}`);
+		const response = await axios.get(`${PROD_BASE_URL}`);
 
 		const products = response.data;
 
@@ -128,28 +127,12 @@ const getProducts = async () => {
 	}
 };
 
-const BASE_URL_cat = 'http://127.0.0.1:8000/api/categories';
-
-const getCategories = async () => {
-	try {
-		const response = await axios.get(`${BASE_URL_cat}`);
-
-		const categories = response.data;
-
-		return categories;
-	} catch (errors) {
-		console.error(errors);
-	}
-};
-
-
-
 const storeProduct = async (createProductForm) => {
 	try {
 		const name = createProductForm.querySelector('#product-name').value;
 		const description = createProductForm.querySelector('#product-description').value;
 		const price = createProductForm.querySelector('#product-price').value;
-		// const image = createProductForm.querySelector('#product-image').value;
+		const image = createProductForm.querySelector('#product-image').value;
 		const category = createProductForm.querySelector('#category').value;
 
 		if (category == ''){
@@ -162,12 +145,12 @@ const storeProduct = async (createProductForm) => {
 				name: name,
 				description: description,
 				price: price,
-				// image: image,
+				image: image,
 			};
-			const response = await axios.post(`${BASE_URL}`, product);
+			const response = await axios.post(`${PROD_BASE_URL}`, product);
 			const productResponse = response.data;
 			
-			const relationURL = BASE_URL+'/'+productResponse.id+'/categories'
+			const relationURL = PROD_BASE_URL+'/'+productResponse.id+'/categories'
 		
 			const response2 = await axios.post(`${relationURL}`, {category_ids:category});
 			// const categoryResponse = response2.data;
@@ -184,7 +167,7 @@ const storeProduct = async (createProductForm) => {
 
 const getProduct = async (productId) => {
 	try {
-		const response = await axios.get(`${BASE_URL}/${productId}`);
+		const response = await axios.get(`${PROD_BASE_URL}/${productId}`);
 
 		const product = response.data;
 
@@ -199,17 +182,17 @@ const editProduct = async (editProductForm, productId) => {
 		const name = editProductForm.querySelector('#product-name').value;
 		const description = editProductForm.querySelector('#product-description').value;
 		const price = editProductForm.querySelector('#product-price').value;
-		// const productImage = editProductForm.querySelector('#product-image').value;
+		const image = editProductForm.querySelector('#product-image').value;
 
 		const product =  {
 			name,
 			description,
 			price,
-			// productImage,
+			image,
 		}
 		console.log(product)
 
-		const response = await axios.put(`${BASE_URL}/${productId}`,product);
+		const response = await axios.put(`${PROD_BASE_URL}/${productId}`,product);
 
 		const productResponse = response.data;
 
@@ -221,7 +204,7 @@ const editProduct = async (editProductForm, productId) => {
 
 const deleteProduct = async (productId) => {
 	try {
-		const response = await axios.delete(`${BASE_URL}/${productId}`);
+		const response = await axios.delete(`${PROD_BASE_URL}/${productId}`);
 
 		const status = response.status;
 

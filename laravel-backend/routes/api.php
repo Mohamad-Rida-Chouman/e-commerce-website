@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AdminAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,13 @@ Route::controller(AuthController::class)->group(function () {
 
 });
 
-// Route::resource('signup', AuthController::class);
+Route::controller(AdminAuthController::class)->group(function () {
+    Route::post('adminLogin', 'login');
+    Route::post('adminRegister', 'register');
+    Route::post('adminLogout', 'logout');
+    Route::post('adminRefresh', 'refresh');
+
+});
 
 Route::post('products/{product}/categories', [ProductController::class, 'assignCategories']);
 Route::resource('categories', CategoryController::class);
