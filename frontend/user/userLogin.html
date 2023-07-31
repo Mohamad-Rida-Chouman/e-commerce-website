@@ -6,7 +6,7 @@
 		<title>Login</title>
 	</head>
 	<body>
-		<form class="login-admin" id="login-admin">
+		<form class="login-user" id="login-user">
 			<input
 				type="text"
 				class="email"
@@ -23,8 +23,37 @@
 				placeholder="Type your password"
 			/>
 			<p id="warning-password"></p>
-			<button id="login-btn" type="submit">Login</button>
+			<button id="login-btn-user" type="submit">Login</button>
 			<p id="warning-login"></p>
 		</form>
+		<form class="signup-user" id="signup-user">
+			<input
+				type="text"
+				class="username-signup"
+				id="username-signup"
+				name="username-signup"
+				placeholder="Type your username"
+			/>
+			<input
+				type="text"
+				class="email-signup"
+				id="email-signup"
+				name="email-signup"
+				placeholder="Type your email"
+			/>
+			<p id="warning-email"></p>
+			<input
+				type="password"
+				class="password-signup"
+				id="password-signup"
+				name="password-signup"
+				placeholder="Type your password"
+			/>
+			<p id="warning-password"></p>
+			<button id="signup-btn-user" type="submit">Sign up</button>
+			<p id="warning-login"></p>
+		</form>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="../scripts/userLogin.js"></script>
 	</body>
 </html>

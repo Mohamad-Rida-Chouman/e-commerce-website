@@ -14,14 +14,14 @@ const getProducts = async () => {
 };
 
 window.addEventListener('load', async () => {
-	const urlParams = new URLSearchParams(window.location.search);
-	const category = urlParams.get('category');
-	console.log('categry is: ', category);
+	// const urlParams = new URLSearchParams(window.location.search);
+	// const category = urlParams.get('category');
+	// console.log('categry is: ', category);
 
-	const responseFilter = await axios.post(`${PROD_CAT_BASE_URL}`, {
-		category_name: category,
-	});
-	console.log(responseFilter);
+	// const responseFilter = await axios.post(`${PROD_CAT_BASE_URL}`, {
+	// 	category_name: category,
+	// });
+	// console.log(responseFilter);
 
 	const productsContainer = document.getElementById('main-container');
 	if (productsContainer) {
