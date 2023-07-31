@@ -1,27 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Product</title>
-</head>
-<body>
-    <p id="warning"></p>
-    <div id="create-product-wrapper">
-        <form id="create-product-form">
-            <input type="text" class="product-name" id="product-name" placeholder="Enter product name">
-            <input type="text" class="product-description" id="product-description" placeholder="Enter product details">
-            <input type="number" class="product-price" id="product-price" placeholder="Enter product price">
-            <input type="file" class="product-image" id="product-image" placeholder="Upload product image">
-            <input list="categories-list" name="category" id="category">
-            <datalist id="categories-list">
-            </datalist>
-            <button type="submit">Add product</button>
-        </form>
-    </div>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="../scripts/checkAuthentication.js"></script>
-    <script src="../scripts/products.js"></script>
-    <script src="../scripts/categories.js"></script>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Create Product</title>
+	</head>
+	<body>
+		<p id="warning"></p>
+		<div id="create-product-wrapper">
+			<form id="create-product-form">
+				<input
+					type="text"
+					class="product-name"
+					id="product-name"
+					placeholder="Enter product name"
+				/>
+				<input
+					type="text"
+					class="product-description"
+					id="product-description"
+					placeholder="Enter product details"
+				/>
+				<input
+					type="number"
+					class="product-price"
+					id="product-price"
+					placeholder="Enter product price"
+				/>
+				<input
+					type="file"
+					class="product-image"
+					id="product-image"
+					placeholder="Upload product image"
+				/>
+				<input list="categories-list" name="category" id="category" />
+				<datalist id="categories-list"> </datalist>
+				<button type="submit">Add product</button>
+			</form>
+		</div>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="../scripts/checkAuthentication.js"></script>
+		<script src="../scripts/products.js"></script>
+		<script src="../scripts/categories.js"></script>
+	</body>
 </html>

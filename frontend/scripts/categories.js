@@ -11,7 +11,14 @@ window.addEventListener('load', async () => {
 		for (const index in categories) {
 			const category = categories[index];
 
-			categoriesLis += '<li><span>' + category.category + '</span> ----- <span><a href="javascript:;" class="edit-btn" data-id="' + category.id + '">Edit name</a></span> ----- <span> <a href="javascript:;" class="delete-btn" data-id="' + category.id + '">Delete</a></span></li>';
+			categoriesLis +=
+				'<li><span>' +
+				category.category +
+				'</span> ----- <span><a href="javascript:;" class="edit-btn" data-id="' +
+				category.id +
+				'">Edit name</a></span> ----- <span> <a href="javascript:;" class="delete-btn" data-id="' +
+				category.id +
+				'">Delete</a></span></li>';
 		}
 
 		categoriesUl.innerHTML = categoriesLis;
@@ -32,7 +39,6 @@ window.addEventListener('load', async () => {
 
 			if (category) {
 				window.location.href = 'dashboard.html';
-
 			}
 		});
 	}
@@ -47,7 +53,7 @@ window.addEventListener('load', async () => {
 		const categoryId = urlParams.get('category_id');
 
 		const category = await getCategory(categoryId);
-		console.log(category)
+		console.log(category);
 		editCategoryForm.querySelector('#category').value = category.category;
 
 		editCategoryForm.addEventListener('submit', async (event) => {
@@ -61,41 +67,41 @@ window.addEventListener('load', async () => {
 		});
 	}
 
-    const deleteBtns = document.querySelectorAll('.delete-btn');
+	const deleteBtns = document.querySelectorAll('.delete-btn');
 
-    if (deleteBtns) {
-        deleteBtns.forEach(deleteBtn => {
-            deleteBtn.addEventListener('click', async (event) => {
-                event.preventDefault();
-    
-                const target = event.target;
-                const categoryId = target.getAttribute('data-id');
-    
-                const result = await deleteCategory(categoryId);
-    
-                if (result) {
-                    location.reload();
-                }
-            });
-        })
-    }
+	if (deleteBtns) {
+		deleteBtns.forEach((deleteBtn) => {
+			deleteBtn.addEventListener('click', async (event) => {
+				event.preventDefault();
+
+				const target = event.target;
+				const categoryId = target.getAttribute('data-id');
+
+				const result = await deleteCategory(categoryId);
+
+				if (result) {
+					location.reload();
+				}
+			});
+		});
+	}
 
 	const editBtns = document.querySelectorAll('.edit-btn');
 
-    if (editBtns) {
-        editBtns.forEach(editBtn => {
-            editBtn.addEventListener('click', async (event) => {
-                event.preventDefault();
-    
-                const target = event.target;
-                const categoryId = target.getAttribute('data-id');
-    
-                if (categoryId) {
-                    window.location.href = `editCategory.html?category_id=${categoryId}`;
-                }
-            });
-        })
-    }
+	if (editBtns) {
+		editBtns.forEach((editBtn) => {
+			editBtn.addEventListener('click', async (event) => {
+				event.preventDefault();
+
+				const target = event.target;
+				const categoryId = target.getAttribute('data-id');
+
+				if (categoryId) {
+					window.location.href = `editCategory.html?category_id=${categoryId}`;
+				}
+			});
+		});
+	}
 });
 
 const CAT_BASE_URL = 'http://127.0.0.1:8000/api/categories';
@@ -116,7 +122,9 @@ const storeCategory = async (createCategoryForm) => {
 	try {
 		const category = createCategoryForm.querySelector('#category').value;
 
-		const response = await axios.post(`${CAT_BASE_URL}`, { category: category });
+		const response = await axios.post(`${CAT_BASE_URL}`, {
+			category: category,
+		});
 
 		const categoryResponse = response.data;
 
@@ -160,11 +168,11 @@ const deleteCategory = async (categoryId) => {
 
 		const status = response.status;
 
-        if (status == 200) {
-            return true;
-        } else {
-            return false;
-        }
+		if (status == 200) {
+			return true;
+		} else {
+			return false;
+		}
 	} catch (errors) {
 		console.error(errors);
 	}

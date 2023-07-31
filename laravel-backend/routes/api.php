@@ -35,6 +35,7 @@ Route::controller(AdminAuthController::class)->group(function () {
 });
 
 Route::post('products/{product}/categories', [ProductController::class, 'assignCategories']);
+Route::get('products_category',[ProductController::class, 'getProducts'] );
 Route::resource('categories', CategoryController::class);
 Route::resource('products', ProductController::class);
 

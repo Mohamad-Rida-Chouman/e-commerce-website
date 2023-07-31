@@ -1,6 +1,14 @@
 window.addEventListener('load', () => {
-	const loginBtn = document.getElementById('login-btn');
+	const isAuthenticated = () => {
+		const token = localStorage.getItem('adminToken');
+		return !!token;
+	};
 
+	if (isAuthenticated()) {
+		window.location.href = 'dashboard.html';
+	}
+
+	const loginBtn = document.getElementById('login-btn');
 	loginBtn.addEventListener('click', (e) => {
 		const loginAdminAccount = document.getElementById('login-admin');
 
@@ -25,13 +33,13 @@ const loginAdmin = async (loginAdminAccount) => {
 		if (email == '') {
 			const warningEmail = document.getElementById('warning-email');
 			warningEmail.innerHTML = `Please enter an email`;
-            const warningPassword = document.getElementById('warning-password');
+			const warningPassword = document.getElementById('warning-password');
 			warningPassword.innerHTML = ``;
 			return;
 		} else if (password == '') {
 			const warningPassword = document.getElementById('warning-password');
 			warningPassword.innerHTML = `Please enter a password`;
-            const warningEmail = document.getElementById('warning-email');
+			const warningEmail = document.getElementById('warning-email');
 			warningEmail.innerHTML = ``;
 			return;
 		} else {
@@ -46,13 +54,11 @@ const loginAdmin = async (loginAdminAccount) => {
 			localStorage.setItem('adminToken', token);
 
 			const adminAccountResponse = response.data;
-
-
 			return adminAccountResponse;
 		}
 	} catch (errors) {
 		console.error(errors);
-        const warningLogin = document.getElementById('warning-login');
-			warningLogin.innerHTML = `Please enter valid credentials`;
+		const warningLogin = document.getElementById('warning-login');
+		warningLogin.innerHTML = `Please enter valid credentials`;
 	}
 };

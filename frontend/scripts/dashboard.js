@@ -2,7 +2,7 @@ window.addEventListener('load', () => {
 	const logoutBtn = document.getElementById('logout-btn');
 
 	logoutBtn.addEventListener('click', async (e) => {
-        console.log("clicked")
+		console.log('clicked');
 		const logoutSuccess = await logoutAdmin();
 		if (logoutSuccess) {
 			e.preventDefault();

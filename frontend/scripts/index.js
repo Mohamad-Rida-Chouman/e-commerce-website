@@ -2,18 +2,22 @@ const leftContainer = document.querySelector('.left-container');
 const rightContainer = document.querySelector('.right-container');
 
 leftContainer.addEventListener('mouseenter', () => {
-  leftContainer.classList.add('expand-background');
+	leftContainer.classList.add('expand-background');
 });
 
 leftContainer.addEventListener('mouseleave', () => {
-  leftContainer.classList.remove('expand-background');
+	leftContainer.classList.remove('expand-background');
 });
 
 rightContainer.addEventListener('mouseenter', () => {
-  rightContainer.classList.add('expand-background');
+	rightContainer.classList.add('expand-background');
 });
 
 rightContainer.addEventListener('mouseleave', () => {
-  rightContainer.classList.remove('expand-background');
+	rightContainer.classList.remove('expand-background');
 });
 
+const mangaBtn = document.getElementById('manga');
+mangaBtn.addEventListener('click', () => {
+	window.location.href = `products.html?category=manga`;
+});

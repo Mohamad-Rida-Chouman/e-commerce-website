@@ -15,4 +15,5 @@ class Product extends Model
         return $this->belongsToMany(Category::class, 'product_category', 'product_id', 'category_id')
                     ->withTimestamps();
     }
+    
 }

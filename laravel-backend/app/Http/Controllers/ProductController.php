@@ -76,4 +76,24 @@ class ProductController extends Controller
             $product->categories()->sync($categoryIds);
         }
     }
+
+    public function productsWithCategory(Request $request, $categoryName){
+        // $categoryName = $request->get('category_name');
+        $products = Product::whereHas("categories", function($query) use ($categoryName) {
+            $query->where("name", $categoryName);
+        }) -> get();
+        return response()->json($products);
+    }
+
+    public function getProducts(Request $request){
+    $category = $request->query('category');
+
+    $products = Product::when($category, function ($query) use ($category) {
+        return $query->whereHas('categories', function ($q) use ($category) {
+            $q->where('name', $category);
+        });
+    })->get();
+
+    return response()->json($products);
+}
 }

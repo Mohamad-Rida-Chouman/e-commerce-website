@@ -11,7 +11,16 @@ window.addEventListener('load', async () => {
 		for (const index in products) {
 			const product = products[index];
 
-			productsLis += '<li><span> Product name: ' + product.name + '</span> </span> ----- <span> <span> ID: ' + product.id + '</span> ----- <span><a href="javascript:;" class="edit-btn" data-id="' + product.id + '">Edit product</a></span> ----- <span> <a href="javascript:;" class="delete-btn" data-id="' + product.id + '">Delete</a></span></li>';
+			productsLis +=
+				'<li><span> Product name: ' +
+				product.name +
+				'</span> </span> ----- <span> <span> ID: ' +
+				product.id +
+				'</span> ----- <span><a href="javascript:;" class="edit-btn" data-id="' +
+				product.id +
+				'">Edit product</a></span> ----- <span> <a href="javascript:;" class="delete-btn" data-id="' +
+				product.id +
+				'">Delete</a></span></li>';
 		}
 
 		productsUl.innerHTML = productsLis;
@@ -44,7 +53,12 @@ window.addEventListener('load', async () => {
 		for (const index in categories) {
 			const category = categories[index];
 
-			categoriesList += '<option value="' + category.id+'" label= "' + category.category+'">';
+			categoriesList +=
+				'<option value="' +
+				category.id +
+				'" label= "' +
+				category.category +
+				'">';
 		}
 
 		categoriesUl.innerHTML = categoriesList;
@@ -59,9 +73,10 @@ window.addEventListener('load', async () => {
 		const productId = urlParams.get('product_id');
 
 		const product = await getProduct(productId);
-		console.log(product)
+		console.log(product);
 		editProductForm.querySelector('#product-name').value = product.name;
-		editProductForm.querySelector('#product-description').value = product.description;
+		editProductForm.querySelector('#product-description').value =
+			product.description;
 		editProductForm.querySelector('#product-price').value = product.price;
 		editProductForm.querySelector('#product-image').value = product.image;
 
@@ -76,41 +91,41 @@ window.addEventListener('load', async () => {
 		});
 	}
 
-    const deleteBtns = document.querySelectorAll('.delete-btn');
+	const deleteBtns = document.querySelectorAll('.delete-btn');
 
-    if (deleteBtns) {
-        deleteBtns.forEach(deleteBtn => {
-            deleteBtn.addEventListener('click', async (event) => {
-                event.preventDefault();
-    
-                const target = event.target;
-                const productId = target.getAttribute('data-id');
-    
-                const result = await deleteProduct(productId);
-    
-                if (result) {
-                    location.reload();
-                }
-            });
-        })
-    }
+	if (deleteBtns) {
+		deleteBtns.forEach((deleteBtn) => {
+			deleteBtn.addEventListener('click', async (event) => {
+				event.preventDefault();
+
+				const target = event.target;
+				const productId = target.getAttribute('data-id');
+
+				const result = await deleteProduct(productId);
+
+				if (result) {
+					location.reload();
+				}
+			});
+		});
+	}
 
 	const editBtns = document.querySelectorAll('.edit-btn');
 
-    if (editBtns) {
-        editBtns.forEach(editBtn => {
-            editBtn.addEventListener('click', async (event) => {
-                event.preventDefault();
-    
-                const target = event.target;
-                const productId = target.getAttribute('data-id');
-    
-                if (productId) {
-                    window.location.href = `editProduct.html?product_id=${productId}`;
-                }
-            });
-        })
-    }
+	if (editBtns) {
+		editBtns.forEach((editBtn) => {
+			editBtn.addEventListener('click', async (event) => {
+				event.preventDefault();
+
+				const target = event.target;
+				const productId = target.getAttribute('data-id');
+
+				if (productId) {
+					window.location.href = `editProduct.html?product_id=${productId}`;
+				}
+			});
+		});
+	}
 });
 
 const PROD_BASE_URL = 'http://127.0.0.1:8000/api/products';
@@ -130,18 +145,18 @@ const getProducts = async () => {
 const storeProduct = async (createProductForm) => {
 	try {
 		const name = createProductForm.querySelector('#product-name').value;
-		const description = createProductForm.querySelector('#product-description').value;
+		const description = createProductForm.querySelector('#product-description')
+			.value;
 		const price = createProductForm.querySelector('#product-price').value;
 		const image = createProductForm.querySelector('#product-image').value;
 		const category = createProductForm.querySelector('#category').value;
 
-		if (category == ''){
+		if (category == '') {
 			const warning = document.getElementById('warning');
-			warning.innerHTML=`Please select a category`;
-			return
-		}
-		else{
-			const product =  {
+			warning.innerHTML = `Please select a category`;
+			return;
+		} else {
+			const product = {
 				name: name,
 				description: description,
 				price: price,
@@ -149,17 +164,17 @@ const storeProduct = async (createProductForm) => {
 			};
 			const response = await axios.post(`${PROD_BASE_URL}`, product);
 			const productResponse = response.data;
-			
-			const relationURL = PROD_BASE_URL+'/'+productResponse.id+'/categories'
-		
-			const response2 = await axios.post(`${relationURL}`, {category_ids:category});
+
+			const relationURL =
+				PROD_BASE_URL + '/' + productResponse.id + '/categories';
+
+			const response2 = await axios.post(`${relationURL}`, {
+				category_ids: category,
+			});
 			// const categoryResponse = response2.data;
-			
-			
-	
+
 			return productResponse;
 		}
-		
 	} catch (errors) {
 		console.error(errors);
 	}
@@ -180,19 +195,20 @@ const getProduct = async (productId) => {
 const editProduct = async (editProductForm, productId) => {
 	try {
 		const name = editProductForm.querySelector('#product-name').value;
-		const description = editProductForm.querySelector('#product-description').value;
+		const description = editProductForm.querySelector('#product-description')
+			.value;
 		const price = editProductForm.querySelector('#product-price').value;
 		const image = editProductForm.querySelector('#product-image').value;
 
-		const product =  {
+		const product = {
 			name,
 			description,
 			price,
 			image,
-		}
-		console.log(product)
+		};
+		console.log(product);
 
-		const response = await axios.put(`${PROD_BASE_URL}/${productId}`,product);
+		const response = await axios.put(`${PROD_BASE_URL}/${productId}`, product);
 
 		const productResponse = response.data;
 
@@ -208,11 +224,11 @@ const deleteProduct = async (productId) => {
 
 		const status = response.status;
 
-        if (status == 200) {
-            return true;
-        } else {
-            return false;
-        }
+		if (status == 200) {
+			return true;
+		} else {
+			return false;
+		}
 	} catch (errors) {
 		console.error(errors);
 	}
