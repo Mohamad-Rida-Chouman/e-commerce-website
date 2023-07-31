@@ -39,7 +39,12 @@ const loginAdmin = async (loginAdminAccount) => {
 				email: email,
 				password: password,
 			};
+
 			const response = await axios.post(`${LOGIN_BASE_URL}`, adminAccount);
+
+			const token = response.data.token;
+			localStorage.setItem('adminToken', token);
+
 			const adminAccountResponse = response.data;
 
 
