@@ -64,4 +64,14 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+    public function productsCart() {
+        return $this->belongsToMany(Product::class, 'cart_items', 'user_id', 'product_id')
+                    ->withTimestamps();
+    }
+
+    public function productsFav() {
+        return $this->belongsToMany(Product::class, 'favorites', 'user_id', 'product_id')
+                    ->withTimestamps();
+    }
+
 }

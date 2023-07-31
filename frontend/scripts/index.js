@@ -40,9 +40,24 @@ rightContainer.addEventListener('mouseleave', () => {
 
 const mangaBtn = document.getElementById('manga');
 mangaBtn.addEventListener('click', () => {
-	window.location.href = `products.html?category=manga`;
+	window.location.href = `products.html?category=1`;
 });
-
+const manhwaBtn = document.getElementById('manhwa');
+manhwaBtn.addEventListener('click', () => {
+	window.location.href = `products.html?category=2`;
+});
+const cosplayBtn = document.getElementById('cosplay');
+cosplayBtn.addEventListener('click', () => {
+	window.location.href = `products.html?category=13`;
+});
+const accessoriesBtn = document.getElementById('accessories');
+accessoriesBtn.addEventListener('click', () => {
+	window.location.href = `products.html?category=14`;
+});
+const printablesBtn = document.getElementById('printables');
+printablesBtn.addEventListener('click', () => {
+	window.location.href = `products.html?category=15`;
+});
 const logout = async () => {
 	try {
 		localStorage.removeItem('token');

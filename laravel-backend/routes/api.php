@@ -35,9 +35,13 @@ Route::controller(AdminAuthController::class)->group(function () {
 });
 
 Route::post('products/{product}/categories', [ProductController::class, 'assignCategories']);
-Route::get('products_category',[ProductController::class, 'getProducts'] );
+Route::post('products/{product}/usersCart', [ProductController::class, 'assignToCart']);
+Route::post('products/{product}/usersFav', [ProductController::class, 'assignToFav']);
+Route::get('products_category/{category_filter}',[ProductController::class, 'getProducts'] );
+
 Route::resource('categories', CategoryController::class);
 Route::resource('products', ProductController::class);
+Route::resource('cart', CartController::class);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

@@ -71,12 +71,22 @@ class ProductController extends Controller
 
     public function assignCategories(Request $request, Product $product) {
         $categoryIds = $request->get('category_ids');
-
         if ($categoryIds) {
             $product->categories()->sync($categoryIds);
         }
     }
-
+    public function assigntoCart(Request $request, Product $product) {
+        $userId = $request->get('user_id');
+        if ($userId) {
+            $product->usersCart()->sync($userId);
+        }
+    }
+    public function assigntoFav(Request $request, Product $product) {
+        $userId = $request->get('user_id');
+        if ($userId) {
+            $product->usersFav()->sync($userId);
+        }
+    }
     public function productsWithCategory(Request $request, $categoryName){
         // $categoryName = $request->get('category_name');
         $products = Product::whereHas("categories", function($query) use ($categoryName) {
@@ -85,14 +95,16 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
-    public function getProducts(Request $request){
-    $category = $request->query('category');
-
-    $products = Product::when($category, function ($query) use ($category) {
-        return $query->whereHas('categories', function ($q) use ($category) {
-            $q->where('name', $category);
-        });
-    })->get();
+    public function getProducts(Request $request, $category_filter){
+        // $category = $request->query('category');
+        $c = $category_filter;
+        
+        $products = Product::select('*')
+        ->whereIn('id',function($query) use($c) {
+            $query->select('product_id')
+                ->from('product_category')
+                ->where('category_id', $c);
+        })->get();
 
     return response()->json($products);
 }
