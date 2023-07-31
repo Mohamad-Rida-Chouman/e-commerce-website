@@ -21,8 +21,10 @@ window.addEventListener('load', async () => {
 
             for (const index in products) {
                 const product = products[index];
-
-                productsList += '<div class="product-container flex flex-col padding-s gap-s" id="product-container"><div class="product-title">'+product.name+'</div><div class="product-image">'+product.image+'</div><div class="product-details">'+product.description+'</div><div class="product-price">'+product.price+'</div></div>';
+                $initialPath = product.image;
+                $removePath = 'C:\\fakepath\\';
+                $imgPath = $initialPath.replace($removePath, '');
+                productsList += '<div class="product-container flex flex-col padding-s gap-s" id="product-container"><div class="product-title">'+product.name+'</div><div class="product-image"><img class="product-cover" src="./assets/cover-images/'+$imgPath+'"></div><div class="product-details">'+product.description+'</div><div class="product-price">'+product.price+'</div></div>';
 
                 }
 
