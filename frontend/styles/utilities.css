@@ -12,6 +12,14 @@ body {
 	height: 100%;
 }
 
+.font {
+	font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.border {
+	border: 1px solid;
+}
+
 .flex {
 	display: flex;
 }
@@ -96,6 +104,10 @@ body {
     background-color: gold;
 }
 
+.white-bg{
+    background-color: white;
+}
+
 .orange-bg{
     background-color: orange;
 }
@@ -113,22 +125,26 @@ body {
 	position: sticky;
 }
 
-.login {
-	background-color: orangered;
+.login, .return, .fav-btn, .cart-btn {
+	background-color: black;
 	color: #fff;
 	padding: 0px 16px;
 	border-radius: 5px;
-	border: 2px solid orangered;
+	border: 2px solid black;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
 }
 
-.login:hover {
-	background-color: orangered;
+.login:hover, .return:hover, .fav-btn:hover, .cart-btn:hover {
+	background-color: black;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	transform: scale(1.05);
 }
 
-.login:active {
+.login:active, .return:active, .fav-btn:active, .cart-btn:active {
 	transform: scale(0.95);
+}
+
+a{
+	text-decoration: none;
 }

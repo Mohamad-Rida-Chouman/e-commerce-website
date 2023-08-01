@@ -1,20 +1,8 @@
 window.addEventListener('load', async () => {
-	const token = localStorage.getItem('token');
-	const buttonChange = document.getElementById('login')
-	if(token){
-		buttonChange.innerHTML = `logout`;
-		buttonChange.addEventListener('click', () => {
-			if(logout()){
-				console.log("logged out")
-				window.location.reload();
 
-			}
-		})
-	}
-	else{
-		buttonChange.addEventListener('click', () => {
-		window.location.href = `userLogin.html`;
-	});
+	const token = localStorage.getItem('adminToken');
+	if(!token){
+		window.location.href = `indexAdmin.html`;
 	}
 
 	const productsWrapper = document.getElementById('products-wrapper');

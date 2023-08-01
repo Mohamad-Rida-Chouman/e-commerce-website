@@ -4,29 +4,34 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Admin Index</title>
+		<link rel="stylesheet" href="../styles/utilities.css" />
 	</head>
-	<body>
-		<form class="login-admin" id="login-admin">
-			<input
-				type="text"
-				class="email"
-				id="email"
-				name="email"
-				placeholder="Type your email"
-			/>
-			<p id="warning-email"></p>
-			<input
-				type="password"
-				class="password"
-				id="password"
-				name="password"
-				placeholder="Type your password"
-			/>
-			<p id="warning-password"></p>
-			<button id="login-btn" type="submit">Login</button>
-			<p id="warning-login"></p>
-		</form>
-
+	<body class="flex justify-center gold-bg">
+		<div class="forms-container flex flex-col justify-center align-center gap-m font">
+			<div class="login-container flex flex-col padding-m border white-bg">
+				Admin Login
+			<form class="login-admin flex flex-col" id="login-admin">
+				<input
+					type="text"
+					class="email padding-xs"
+					id="email"
+					name="email"
+					placeholder="Type your email"
+				/>
+				<p id="warning-email"></p>
+				<input
+					type="password"
+					class="password padding-xs"
+					id="password"
+					name="password"
+					placeholder="Type your password"
+				/>
+				<p id="warning-password"></p>
+				<button class="gold-bg font" id="login-btn" type="submit">Login</button>
+				<p id="warning-login"></p>
+			</form>
+			</div>
+		</div>
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 		<script src="../scripts/indexAdmin.js"></script>
 	</body>

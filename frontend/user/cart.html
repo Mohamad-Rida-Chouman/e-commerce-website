@@ -10,34 +10,41 @@
 	<body>
 		<header>
 			<nav class="navbar flex justify-between padding-xs gold-bg" id="navbar">
-				<img class="logo" id="logo" src="../assets/logo.svg" alt="logo" />
+				<a class="flex" href="./products.html">
+					<img class="logo" id="logo" src="../assets/logo.svg" alt="logo" />
+				</a>
 				<div class="cart-favorites-container flex justify-between gap-s">
 					<div class="favorites-container flex" id="favorites-container">
-						<img
-							class="favorites"
-							id="favorites"
-							src="../assets/heart.svg"
-							alt="favorites"
-						/>
+						<a class="favorites-link flex" href="favorites.html">
+							<img
+								class="favorites"
+								id="favorites"
+								src="../assets/heart.svg"
+								alt="favorites"
+							/>
+						</a>
 					</div>
 					<div class="cart-container flex" id="cart-container">
-						<img
-							class="cart"
-							id="cart"
-							src="../assets/cart.svg"
-							alt="shopping cart"
-						/>
+						<a class="cart-link flex" href="cart.html">
+							<img
+								class="cart"
+								id="cart"
+								src="../assets/cart.svg"
+								alt="shopping cart"
+							/>
+						</a>
 					</div>
 				</div>
 				<button class="login" id="login">login</button>
 			</nav>
 		</header>
-        <div class="cart" id="cart">This is your cart</div>
+		<a class="return" id="return" href="index.html">Return to Home</a>
+        <h1 class="cart padding-m" id="cart">Cart</h1>
 		<main
 			class="main-container flex wrap padding-m gap-l"
 			id="main-container"
 		></main>
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-		<script src="../scripts/displayProducts.js"></script>
+		<script src="../scripts/favoritesCart.js"></script>
 	</body>
 </html>
