@@ -17,15 +17,15 @@ window.addEventListener('load', async () => {
 			const product = products[index];
 
 			productsLis +=
-				'<li><span> Product name: ' +
+				'<li class="flex justify-between"><span><span> Product name: ' +
 				product.name +
-				'</span> </span> ----- <span> <span> ID: ' +
+				'</span><span> ID: ' +
 				product.id +
-				'</span> ----- <span><a href="javascript:;" class="edit-btn" data-id="' +
+				'</span></span>&nbsp;&nbsp;&nbsp;<span><span><a href="javascript:;" class="edit-btn" data-id="' +
 				product.id +
-				'">Edit product</a></span> ----- <span> <a href="javascript:;" class="delete-btn" data-id="' +
+				'">Edit product</a></span>&nbsp;&nbsp;&nbsp;<span> <a href="javascript:;" class="delete-btn" data-id="' +
 				product.id +
-				'">Delete</a></span></li>';
+				'">Delete</a></span></span></li>';
 		}
 
 		productsUl.innerHTML = productsLis;

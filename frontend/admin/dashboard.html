@@ -4,25 +4,33 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Admin Dashboard</title>
+		<link rel="stylesheet" href="../styles/utilities.css"/>
+		<link rel="stylesheet" href="../styles/dashboardAdmin.css"/>
 	</head>
-	<body>
-		<div id="categories-wrapper">
-			<h1>Categories</h1>
-
-			<ul class="categories-list" id="categories-list"></ul>
+	<body class="gold-bg flex flex-col justify-center align-center">
+		<div class="categories-container flex flex-col justify-center align-center">
+			<div class="categories-wrapper border white-bg flex flex-col align-center padding-m" id="categories-wrapper">
+				<h1>Categories</h1>
+				<br>
+				<ul class="categories-list" id="categories-list"></ul>
+				<br>
+				<a href="./createCategory.html" class="link-to-add return">Add Category</a>
+			</div>
+	
+	
 		</div>
-
-		<a href="./createCategory.html" class="link-to-add">Add Category</a>
-
-		<div id="products-wrapper">
-			<h1>Products</h1>
-
-			<ul class="products-list" id="products-list"></ul>
+		<div class="products-container flex flex-col justify-center align-center">
+			<div class="products-wrapper border white-bg flex flex-col align-center padding-m" id="products-wrapper">
+				<h1>Products</h1>
+				<br>
+				<ul class="products-list" id="products-list"></ul>
+				<br>
+				<a href="./createProduct.html" class="link-to-add return">Add Product</a>
+			</div>
 		</div>
-
-		<a href="./createProduct.html" class="link-to-add">Add Product</a>
+		
 		<br />
-		<button class="logout-btn" id="logout-btn">Logout</button>
+		<button class="logout-btn return" id="logout-btn">Logout</button>
 
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 		<script src="../scripts/dashboard.js"></script>

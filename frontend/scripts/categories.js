@@ -12,13 +12,13 @@ window.addEventListener('load', async () => {
 			const category = categories[index];
 
 			categoriesLis +=
-				'<li><span>' +
+				'<li class="flex justify-between"><span><span>' +
 				category.category +
-				'</span> ----- <span><a href="javascript:;" class="edit-btn" data-id="' +
+				'</span></span>&nbsp;&nbsp;&nbsp;<span><span><a href="javascript:;" class="edit-btn" data-id="' +
 				category.id +
-				'">Edit name</a></span> ----- <span> <a href="javascript:;" class="delete-btn" data-id="' +
+				'">Edit name</a></span>&nbsp;&nbsp;&nbsp;<span> <a href="javascript:;" class="delete-btn" data-id="' +
 				category.id +
-				'">Delete</a></span></li>';
+				'">Delete</a></span></span></li>';
 		}
 
 		categoriesUl.innerHTML = categoriesLis;

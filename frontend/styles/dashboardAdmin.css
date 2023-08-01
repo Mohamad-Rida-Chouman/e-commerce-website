@@ -1,0 +1,7 @@
+.categories-container, .products-container{
+    width: 100%;
+}
+
+.categories-wrapper, .products-wrapper{
+    width: 50%;
+}
