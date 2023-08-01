@@ -96,7 +96,6 @@ class ProductController extends Controller
     }
 
     public function getProducts(Request $request, $category_filter){
-        // $category = $request->query('category');
         $c = $category_filter;
         
         $products = Product::select('*')
@@ -107,5 +106,31 @@ class ProductController extends Controller
         })->get();
 
     return response()->json($products);
-}
+    }
+
+    public function getFavorites(Request $request, $user_id){
+        $c = $user_id;
+        
+        $products = Product::select('*')
+        ->whereIn('id',function($query) use($c) {
+            $query->select('product_id')
+                ->from('favorites')
+                ->where('user_id', $c);
+        })->get();
+
+    return response()->json($products);
+    }
+
+    public function getCart(Request $request, $user_id){
+        $c = $user_id;
+        
+        $products = Product::select('*')
+        ->whereIn('id',function($query) use($c) {
+            $query->select('product_id')
+                ->from('cart_items')
+                ->where('user_id', $c);
+        })->get();
+
+    return response()->json($products);
+    }
 }

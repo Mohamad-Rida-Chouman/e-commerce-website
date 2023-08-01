@@ -1,5 +1,22 @@
 window.addEventListener('load', async () => {
-	//checking whether we're on the index page of products or not and then fetching all products
+	const token = localStorage.getItem('token');
+	const buttonChange = document.getElementById('login')
+	if(token){
+		buttonChange.innerHTML = `logout`;
+		buttonChange.addEventListener('click', () => {
+			if(logout()){
+				console.log("logged out")
+				window.location.reload();
+
+			}
+		})
+	}
+	else{
+		buttonChange.addEventListener('click', () => {
+		window.location.href = `userLogin.html`;
+	});
+	}
+
 	const productsWrapper = document.getElementById('products-wrapper');
 	if (productsWrapper) {
 		const products = await getProducts();
@@ -26,7 +43,6 @@ window.addEventListener('load', async () => {
 		productsUl.innerHTML = productsLis;
 	}
 
-	// adding a new product form
 	const createProductWrapper = document.getElementById(
 		'create-product-wrapper'
 	);
@@ -171,7 +187,6 @@ const storeProduct = async (createProductForm) => {
 			const response2 = await axios.post(`${relationURL}`, {
 				category_ids: category,
 			});
-			// const categoryResponse = response2.data;
 
 			return productResponse;
 		}

@@ -38,6 +38,8 @@ Route::post('products/{product}/categories', [ProductController::class, 'assignC
 Route::post('products/{product}/usersCart', [ProductController::class, 'assignToCart']);
 Route::post('products/{product}/usersFav', [ProductController::class, 'assignToFav']);
 Route::get('products_category/{category_filter}',[ProductController::class, 'getProducts'] );
+Route::get('products_favorites/{user_id}',[ProductController::class, 'getFavorites'] );
+Route::get('products_cart/{user_id}',[ProductController::class, 'getCart'] );
 
 Route::resource('categories', CategoryController::class);
 Route::resource('products', ProductController::class);
